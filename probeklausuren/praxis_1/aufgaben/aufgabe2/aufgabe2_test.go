@@ -20,6 +20,9 @@ func ExampleNode_RemoveAt_valid_notfirst() {
 	n.RemoveAt(1) // [42 53 38]
 	PrintValuesAndLengths(n)
 
+	n.RemoveAt(0) // [53 38]
+	PrintValuesAndLengths(n)
+
 	// Output:
 	// Values: []
 	// Lengths: []
@@ -32,6 +35,10 @@ func ExampleNode_RemoveAt_valid_notfirst() {
 	//
 	// Values: [42 53 38]
 	// Lengths: [3 2 1]
+	//
+	// Values: [53 38]
+	// Lengths: [2 1]
+
 }
 
 // Test für das Entfernen von ungültigen Positionen.
