@@ -8,6 +8,17 @@ package aufgabe1
 // Sum gibt die Summe aller Werte in der Liste zurück.
 // Wenn die Liste leer ist, soll 0 zurückgegeben werden.
 func (n *Node) Sum() int {
-	// TODO
-	return 0
+
+	if n.IsEmpty() {
+		return 0
+	}
+	count := 0
+
+	for !n.IsEmpty() {
+		count = count + n.Value
+		n = n.Next
+		
+	}
+
+	return count
 }

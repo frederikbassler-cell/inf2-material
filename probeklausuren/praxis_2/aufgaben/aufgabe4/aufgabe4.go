@@ -10,8 +10,31 @@ package aufgabe4
 // Die Liste soll keine Duplikate enthalten, sie muss aber nicht sortiert sein.
 // Der Knoten n selbst ist in 0 Schritten von n aus erreichbar,
 // seine direkten Nachbarn sind in 1 Schritt erreichbar, usw.
+
 func (n *Node) NodesWithDistance(d int) []*Node {
-	result := []*Node{n}
-	// TODO
-	return result
+ if d == 0 {
+        return []*Node{n}
+    }
+
+    current := []*Node{n}
+
+    for i := 0; i < d; i++ {
+        var next []*Node
+        
+        seenInThisStep := make(map[*Node]bool)
+
+        for _, c := range current {
+            for _, neighbor := range c.neighbours {
+                
+                if !seenInThisStep[neighbor] {
+                    seenInThisStep[neighbor] = true 
+                    next = append(next, neighbor)
+                }
+            }
+        }
+        
+        current = next
+    }
+
+    return current
 }

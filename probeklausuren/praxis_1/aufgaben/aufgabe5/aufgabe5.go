@@ -10,6 +10,17 @@ package aufgabe5
 // Dabei steht l für "links" und r für "rechts", der String beschreibt den Weg durch den Baum.
 func (n *Node) PathStrings() []string {
 	result := []string{}
-	// TODO
+	if n.IsEmpty() {
+		return result
+	}
+	if n.IsLeaf() {
+		return []string{""}
+	}
+	for _, path := range n.Left.PathStrings() {
+		result = append(result, "l"+path)
+	}
+	for _, path := range n.Right.PathStrings() {
+		result = append(result, "r"+path)
+	}
 	return result
 }

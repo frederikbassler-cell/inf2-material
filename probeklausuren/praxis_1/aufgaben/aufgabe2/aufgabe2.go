@@ -59,11 +59,77 @@ func (n *Node) remove0(index int) {
 		n.Value = n.Next.Value
 	}
 	for !n.IsEmpty() {
-		
+
 		if index+1 == 1 {
 
 			n.Next = n.Next.Next
 			break
 		}
 	}
+}
+
+// InsertAt fügt den übergebenen Wert an der Stelle 'index' in die Liste ein.
+// Wenn index eine ungültige Position ist (z.B. negativ oder größer als die aktuelle Länge),
+// soll die Liste unverändert bleiben.
+func (n *Node) InsertAt(index int, value int) {
+	if index < 0 || index != n.länge()-1 {
+		return
+	}
+	count := 0
+
+	for !n.IsEmpty() {
+
+		if count == index-1 {
+			a := n.Next
+			n.Next = NewNode()
+			n.Next.Value = value
+			n.Next.Next = a
+
+		}
+		n.lengthadjustment()
+		count++
+		n = n.Next
+
+	}
+
+}
+
+func (n *Node) länge() int {
+	count := 0
+	for !n.IsEmpty() {
+		count++
+		n = n.Next
+	}
+	return count
+}
+
+/*func (n *Node) RemoveLast() {
+    if n.Next == nil{
+		n.Value = 0
+	}
+if n.IsEmpty(){
+	return
+}
+
+if n.Next.Next.IsEmpty(){
+	n.Next = n.Next.Next
+return
+}
+
+ n.Next.RemoveLast()
+
+}*/
+
+func (n *Node) RemoveLast() {
+	if n.IsEmpty() {
+		return
+	}
+
+	for !n.Next.IsEmpty() {
+		n.Length--
+
+		n = n.Next
+	}
+	n.Next = nil
+	n.Length = 0
 }

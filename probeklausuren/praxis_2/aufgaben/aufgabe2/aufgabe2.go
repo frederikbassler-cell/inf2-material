@@ -11,6 +11,52 @@ package aufgabe2
 // Wenn value in der Liste nicht vorkommt, soll die Liste unverändert bleiben.
 // Die Funktion liefert den neuen Kopf der Liste zurück.
 func (n *Node) RemoveAll(value int) *Node {
-	// TODO
+	if n.IsEmpty() {
+		return nil
+	}
+	n.Remove(value)
+	n.lengthadjustment()
+
 	return n
 }
+
+func (n *Node) Remove(value int) {
+	count := 0
+	for !n.IsEmpty() {
+
+		if count == 0 {
+			if n.Value == value {
+		n.Value = n.Next.Value
+		n.Next = n.Next.Next
+	}
+		}
+
+		if n.Next.Value == value {
+
+			n.Next = n.Next.Next
+			break
+		}
+
+		n = n.Next
+		count++
+	}
+}
+func (n *Node) lengthadjustment() {
+
+	le := n.lenNode()
+	for !n.IsEmpty() {
+		n.Length = le
+		n = n.Next
+		le--
+	}
+}
+
+func (n *Node) lenNode() int {
+	Nodelen := 0
+	for !n.IsEmpty() {
+		n = n.Next
+		Nodelen++
+	}
+	return Nodelen
+}
+

@@ -7,6 +7,10 @@ package aufgabe3
 
 // HasNeighbour prüft, ob n einen Nachbarn mit dem angegebenen Label hat.
 func (n *Node) HasNeighbour(label string) bool {
-	// TODO
+	for _,e := range n.neighbours{
+		if e.Label == label {
+			return true
+		}
+	}
 	return false
 }

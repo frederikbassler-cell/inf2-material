@@ -5,8 +5,12 @@ package aufgabe5
 //          Die zu implementierende Funktion ist eine Methode dieses Structs.
 // MAX. PUNKTE: 10
 
-// Size liefert die Anzahl der Knoten im Baum.
 func (n *Node) Size() int {
-	// TODO
-	return 0
+
+	if n.IsEmpty() {
+		return 0
+	}
+
+	return n.Right.Size() + 1 + n.Left.Size()
+
 }
